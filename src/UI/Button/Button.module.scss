@@ -1,0 +1,89 @@
+@import "../styles/vars.scss";
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: max-content;
+  font-size: 16px;
+  color: var(--white);
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  transform: scale(1);
+  transition: all .3s ease-in-out;
+  &:hover {
+  }
+  &:active {
+  }
+}
+
+.success {
+  background: $success;
+  &:hover {
+  }
+  &.glowEffect {
+    .glowContainer {
+      .glowBlur {
+        stroke: $success;
+      }
+      .glowLine {
+        stroke: $success;
+      }
+    }
+  }
+}
+.outline-success {
+  border: 2px solid $success;
+}
+.danger {
+  background: $danger;
+  &:hover {
+  }
+  &.glowEffect {
+    .glowContainer {
+      .glowBlur {
+        stroke: $danger;
+      }
+      .glowLine {
+        stroke: $danger;
+      }
+    }
+  }
+}
+.outline-danger {
+  border: 2px solid $danger;
+}
+.normal {
+  background: var(--main-color);
+  &:hover {
+  }
+  &.glowEffect {
+    .glowContainer {
+      .glowBlur {
+        stroke: var(--main-color);
+      }
+      .glowLine {
+        stroke: var(--main-color);
+      }
+    }
+  }
+}
+.outline-normal {
+  border: 2px solid var(--main-color);
+}
+
+.disabled {
+  cursor: default;
+  pointer-events: none;
+  filter: opacity(.6);
+  &:hover {
+    transform: none;
+  }
+  &:active {
+    transform: none;
+  }
+}

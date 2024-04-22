@@ -1,0 +1,113 @@
+@import "../src/UI//styles/vars.scss";
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video, * {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html, body {
+  font-size: 14px;
+  //height: 100%;
+  //overflow-x: hidden;
+
+}
+
+#root {
+  height: 100%;
+}
+
+#modal-info {
+  &>div {
+    //z-index: 200;
+  }
+}
+
+#modal-action {
+  &>div {
+    //z-index: 100;
+  }
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+input, textarea, button {
+  outline: none ;
+}
+
+body {
+  //background: linear-gradient(180deg, #009FFD 0%, #2A2A72 100%);
+  //background-attachment: fixed;
+  background-color: #e4e2f5;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.ok {
+  color: green;
+}
+
+.bad {
+  color: red;
+}
+
+.more {
+  color: red;
+}
+
+.less {
+  color: var(--main-color);
+}
+
+::-webkit-scrollbar {
+  position: absolute!important;
+  display: block;
+  left: 0;
+  width: $scrollbar_width;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 5px;
+  //background: var(--main-color);
+  background-color: #6b82f7;
+}
+
+::-webkit-scrollbar-track-piece {
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  //background-color: var(--main-color-light);
+  background: var(--main-color);
+}

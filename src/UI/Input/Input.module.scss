@@ -1,0 +1,29 @@
+@import '../../UI/styles/vars.scss';
+.container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    input {
+        width: 100%;
+        outline: none;
+        padding: 10px 45px 10px 15px;
+        border-radius: 7px;
+        transition: all .3s ease;
+        border: 2px solid var(--main-color);
+        &:focus {
+            border-radius: 10px;
+            border: 2px solid $success;
+        }
+    }
+
+    svg {
+        cursor: pointer;
+        transition: all .2s ease;
+        position: absolute;
+        right: 20px;
+        &:hover {
+            fill: $danger;
+        }
+    }
+}

@@ -1,0 +1,130 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: max-content;
+//////////
+    .BlockLeft {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        padding: 10px;
+        height: 100vh;
+        gap: 10px;
+        .GoBackToTheMainPage {
+            width: 100%;
+            height: max-content;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            .GoToMain {
+                flex: 1;
+                    svg {
+                        width: 40px;
+                        height: 40px;
+                        transform: rotate(180deg);
+                        cursor: pointer;
+                        transition: filter 0.2s ease;
+                        fill: var(--white);
+                    }
+            }
+        }
+        .GoBackToTheMainPage:hover svg {
+            -webkit-filter: drop-shadow( 2px 2px 4px rgba(0, 0, 0, .7));
+            filter: drop-shadow( 2px 2px 4px rgba(0, 0, 0, .7));
+        }
+    }
+/////////
+    .BlockCenter {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        flex: 3;
+        padding: 10px 0px;
+        // gap: 10px;
+        .FullCoursContent {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            gap: 10px;
+            .content {
+                width: 100%;
+                height: 100%;
+                overflow-y: auto;
+                .scrollMargin {
+                    margin-right: 5px;
+                }
+                .title {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 10px;
+                    border-bottom: 2px solid var(--main-color);
+                }
+                .ImageBody {
+                    width: 100%;
+                    height: auto;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    box-sizing: border-box;
+                    overflow: hidden;
+                    position: relative;
+                    padding: 10px;
+                    img {
+                        width: 100%;
+                        max-width: 700px;
+                        height: auto;
+                        display: flex;
+                        object-fit: cover;
+                        border-radius: 10px;
+                    }
+                }
+                .textBlock {
+                    width: 100%;
+                    padding: 10px;
+                    font-size: 14px;
+                }
+                .TestBody {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    .questionText {
+                        padding: 5px;
+                    }
+                    .correctAnswer {
+                        padding: 5px;
+                    }
+                    .AnsvertInput {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+                    }
+                }
+            }
+            // .BulletsBox {
+            //     display: flex;
+            //     align-items: center;
+            //     justify-content: center;
+            //     margin-bottom: 10px;
+            //     padding: 10px;
+            //    ul {
+            //     display: flex;
+            //     gap: 10px;
+            //    }
+            // }
+        }
+    }
+///////////
+    .BlockRight {
+        width: 100%;
+        height: 100vh;
+        flex: 1;
+        padding: 10px;
+    }
+}
+

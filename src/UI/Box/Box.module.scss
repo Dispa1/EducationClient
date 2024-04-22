@@ -1,0 +1,11 @@
+@import "../styles/vars.scss";
+
+.Box {
+    height: max-content;
+    max-height: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    // margin-bottom: 5px;
+    background-color: var(--white);
+}

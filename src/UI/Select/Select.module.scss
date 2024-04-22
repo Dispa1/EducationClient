@@ -1,0 +1,99 @@
+.select-container {
+    position: relative;
+    width: 100%;
+    // margin-top: 8vh;
+  }
+  
+  .chosen-value {
+    // font-family: 'Ek Mukta';
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 4px;
+    width: 100%;
+    height: 3rem;
+    font-size: 1.1rem;
+    padding: 1rem;
+    background-color: var(--white);
+    border: 2px solid var(--main-color);
+    border-radius: 7px;
+    transition: .3s ease-in-out;
+    text-align: center;
+  
+    &::-webkit-input-placeholder {
+      color: #333;
+    }
+  
+    &:hover {
+      background-color: var(--main-color);
+      cursor: pointer;
+      color: var(--white);
+  
+      &::-webkit-input-placeholder {
+        color: var(--white);
+      }
+    }
+  
+    &:focus,
+    &.open {
+      // box-shadow: 0px 5px 8px 0px rgba(0,0,0,0.2);
+      outline: 0;
+      background-color: var(--main-color);
+      border-radius: 5px 5px 0px 0px;
+      color: var(--white);
+  
+      &::-webkit-input-placeholder {
+        color: var(--white);
+      }
+    }
+  }
+  
+  .value-list {
+    list-style: none;
+    // margin-top: 2px;
+    box-shadow: 0px 5px 8px 0px rgba(0,0,0,0.2);
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height .3s ease-in-out;
+    border-radius: 0px 0px 5px 5px;
+    border: 2px solid var(--main-color);
+    opacity: 0;
+    margin-bottom: 5px;
+  
+    &.open {
+      max-height: 320px;
+      overflow: auto;
+      opacity: 1;
+      &::-webkit-scrollbar-track {
+        border-radius: 5px 0px 0px 5px;
+      }
+    }
+  
+    li {
+      position: relative;
+      // height: 4rem;
+      background-color: #FAFCFD;
+      padding: 1rem;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      transition: background-color .4s;
+      opacity: 1;
+      margin: 5px;
+      border-radius: 10px;
+      text-transform: uppercase;
+  
+      &:hover {
+        background-color: var(--main-color);
+        color: var(--white);
+      }
+  
+      &.closed {
+        max-height: 0;
+        overflow: hidden;
+        padding: 0;
+        opacity: 0;
+      }
+    }
+  }
+  

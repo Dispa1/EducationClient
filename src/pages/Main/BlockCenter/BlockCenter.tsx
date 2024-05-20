@@ -3,13 +3,17 @@ import Box from '../../../UI/Box/Box';
 import styles from './BlockCenter.module.scss';
 import Container from '../../../UI/container/container';
 import NewsImage from '../../../assets/images/News.jpg';
-import CoursImage from '../../../assets/images/IT.jpg';
 import Button from '../../../UI/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import { getAllNewsFromServer } from '../../../store/service/News';
 import { getAllCourses } from '../../../store/service/Course';
 import { getAllOpenQuestionTest } from '../../../store/service/OpenQuestionTest';
 import { getAllClosedQuestionsTest } from '../../../store/service/CloseQuestionTest';
+import ReactMarkdown from 'react-markdown';
+import gfm from 'remark-gfm';
+import Modal from '../../../UI/Modal/Modal';
+import { ReactComponent as Close } from '../../../assets/icons/circle-xmark.svg';
+import { ReactComponent as NoImage } from '../../../assets/icons/image-slash.svg';
 
 interface Test {
     id: string;
@@ -19,14 +23,35 @@ interface Test {
     questions: any[];
 }
 
+interface Course {
+    id: string;
+    title: string;
+    description: string;
+    createdAt: string;
+    image: string;
+}
+
 const BlockCenter = () => {
     const [activeItem, setActiveItem] = useState<number>(0);
     const [activeItemTestHeader, setActiveItemTestHeader] = useState<number>(0);
     const [news, setNews] = useState<any[]>([]);
-    const [courses, setCourses] = useState<any[]>([]);
+    const [courses, setCourses] = useState<Course[]>([]);
     const [openTests, setOpenTests] = useState<any[]>([]);
     const [closedTests, setClosedTests] = useState<any[]>([]);
     const navigate = useNavigate();
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const [selectedTestId, setSelectedTestId] = useState<string>('');
+    const [selectedTestName, setSelectedTestName] = useState<string>('');
+    const [selectedTestTime, setSelectedTestTime] = useState<number>();
+    const [userRole, setUserRole] = useState<string | null>(null);
+
+    useEffect(() => {
+        const userData = sessionStorage.getItem('userData');
+        if (userData) {
+            const { role } = JSON.parse(userData);
+            setUserRole(role);
+        }
+    }, []);
 
     const redirectToAdminPanel = () => {
         navigate('/AdminPanel');
@@ -44,12 +69,18 @@ const BlockCenter = () => {
         navigate(`/FullCours/${courseId}`);
     };       
 
-    const handleStartOpenTest = (testId: string) => {
-        navigate(`/FullOpenTest/${testId}`);
+    const handleStartOpenTest = (testId: string, testName: string, testTime: number) => {
+        setSelectedTestTime(testTime);
+        setSelectedTestName(testName);
+        setSelectedTestId(testId);
+        setIsModalOpen(true);
     };
 
-    const handleStartCloseTest = (testId: string) => {
-        navigate(`/FullCloseTest/${testId}`);
+    const handleStartCloseTest = (testId: string, testName: string, testTime: number) => {
+        setSelectedTestTime(testTime);
+        setSelectedTestName(testName);
+        setSelectedTestId(testId);
+        setIsModalOpen(true);
     };
     
     const handleSearch = (searchTerm: string) => {
@@ -79,6 +110,15 @@ const BlockCenter = () => {
             .catch(error => console.error('Error fetching closed tests:', error));
     }, []);
 
+    const handleStartOpenTestPage = (testId: string) => {
+        navigate(`/FullOpenTest/${testId}`);
+    };
+    
+    const handleStartCloseTestPage = (testId: string) => {
+        navigate(`/FullCloseTest/${testId}`);
+    };
+    
+
     return (
         <div className={styles.BlockCenter}>
             <Container>
@@ -99,10 +139,12 @@ const BlockCenter = () => {
                                     <div className={styles.line}></div>
                                 </li>
                             </ul>
-                            <div className={styles.AdminButton} onClick={redirectToAdminPanel}>
-                                <Button type="submit" variant="normal">
-                                    <h2>Админ Панель</h2>
-                                </Button>
+                            <div className={styles.AdminButton} >
+                            {userRole === 'superuser' && (
+                                    <Button type="submit" variant="normal" onClick={redirectToAdminPanel}>
+                                        <h2>Админ Панель</h2>
+                                    </Button>
+                            )}
                             </div>
                         </div>
                     </Box>
@@ -128,7 +170,11 @@ const BlockCenter = () => {
                                 <Box key={index}>
                                     <div className={styles.Content}>
                                         <div className={styles.ImageBody}>
-                                            <img src={NewsImage} alt="" />
+                                        {news.image ? (
+                                            <img src={news.imageUrl} alt={news.title} />
+                                        ) : (
+                                            <NoImage className={styles.noImageIcon} />
+                                        )}
                                         </div>
                                         <div className={styles.DescriptionBody}>
                                             <div className={styles.Name}>
@@ -156,14 +202,19 @@ const BlockCenter = () => {
                                 <Box key={index} >
                                     <div className={styles.Content} onClick={() => handleCourseClick(cours.id)}>
                                         <div className={styles.ImageBody}>
-                                            <img src={CoursImage} alt="" />
+                                        {cours.image ? (
+                                            <img src={cours.imageUrl} alt={cours.title} />
+                                        ) : (
+                                            <NoImage className={styles.noImageIcon} />
+                                        )}
                                         </div>
                                         <div className={styles.DescriptionBody}>
                                             <div className={styles.Name}>
                                                 <h2>{cours.title}</h2>
                                             </div>
                                             <div className={styles.Description}>
-                                                {cours.description}
+                                            {/* {cours.description} */}
+                                                <ReactMarkdown children={cours.description} remarkPlugins={[gfm]} skipHtml={true}></ReactMarkdown>
                                             </div>
                                         </div>
                                     </div>
@@ -193,7 +244,7 @@ const BlockCenter = () => {
                                         <div className={styles.TestCriteria}>
                                             <h3>Время {test.time} мин</h3>
                                             <h3>Вопросы {test.test.length}</h3>
-                                            <Button type="submit" variant="success" onClick={() => handleStartOpenTest(test.id)}>Начать тест</Button>
+                                            <Button type="submit" variant="success" onClick={() => handleStartOpenTest(test.id, test.name, test.time)}>Начать тестирование</Button>
                                         </div>
                                     </div>
                                     <div className={styles.Time}>
@@ -221,7 +272,7 @@ const BlockCenter = () => {
                                         <div className={styles.TestCriteria}>
                                             <h3>Время {test.time} мин</h3>
                                             <h3>Вопросы {test.test.length}</h3>
-                                            <Button type="submit" variant="success" onClick={() => handleStartCloseTest(test.id)}>Начать тест</Button>
+                                            <Button type="submit" variant="success" onClick={() => handleStartCloseTest(test.id, test.name, test.time)}>Начать тестирование</Button>
                                         </div>
                                     </div>
                                     <div className={styles.Time}>
@@ -240,6 +291,33 @@ const BlockCenter = () => {
                     </ul>
                 </div>
             </Container>
+            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+                <div className={styles.headerModal}>
+                    <h2>{selectedTestName}</h2>
+                    <div className={styles.closeIconBlock}>
+                        <Close onClick={() => setIsModalOpen(false)} />
+                    </div>
+                </div>
+                <div className={styles.bodyModal}>
+                    <p>Перед началом тестирования, пожалуйста, обратите внимание на следующее:</p>
+                    <ul>
+                        <li>Убедитесь, что у вас достаточно времени и никаких внешних помех.</li>
+                        <li style={{ whiteSpace: 'pre-wrap' }}>Тест имеет ограничение по времени в <b>{selectedTestTime} минут.</b> Он автоматически завершится по истечении этого времени.</li>
+                        <li>Технические требования: убедитесь, что ваше интернет-соединение стабильно.</li>
+                    </ul>
+                </div>
+                <div className={styles.footerModal}>
+                    {selectedTestId && selectedTestName && selectedTestTime && (
+                        <>
+                            {activeItemTestHeader === 0 ? (
+                                <Button variant="normal" onClick={() => handleStartOpenTestPage(selectedTestId)}>Начать тестирование</Button>
+                            ) : (
+                                <Button variant="normal" onClick={() => handleStartCloseTestPage(selectedTestId)}>Начать тестирование</Button>
+                            )}
+                        </>
+                    )}
+                </div>
+            </Modal>
         </div>
     );
 };

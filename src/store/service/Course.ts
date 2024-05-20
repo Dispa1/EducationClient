@@ -59,4 +59,23 @@ export const getCourseById = async (courseId: string, token: string | null) => {
     }
 };
 
+export const deleteCourse = async (courseId: string, token: string | null) => {
+  try {
+      const response = await fetch(`${process.env.REACT_APP_API_EDUCATION}/api/deleteCourse/${courseId}`, {
+          method: 'DELETE',
+          headers: {
+              Authorization: `Bearer ${token}`,
+          },
+      });
 
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      return data;
+  } catch (error) {
+      console.error('There was a problem with deleting the course:', error);
+      return null;
+  }
+};

@@ -10,9 +10,9 @@ export const loginUser = async (userData: any) => {
 
       const decodedToken: any = jwtDecode(accessToken);
 
-      const { username, full_name, role_id } = decodedToken;
+      const { userId, username, full_name, role } = decodedToken;
 
-      sessionStorage.setItem('userData', JSON.stringify({ username, full_name, role_id }));
+      sessionStorage.setItem('userData', JSON.stringify({ userId, username, full_name, role }));
       sessionStorage.setItem('token', accessToken);
       sessionStorage.setItem('refreshToken', refreshToken);
       

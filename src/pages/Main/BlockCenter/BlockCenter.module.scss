@@ -3,7 +3,7 @@
 .BlockCenter {
     width: 100%;
     height: 100vh;
-    flex: 3;
+    flex: 4;
     .header {
         margin-top: 10px;
         .HeaderRow {
@@ -124,8 +124,9 @@
         }
         
         .Description {
-            padding: 5px;
+            // padding: 5px;
             height: max-content;
+            max-height: 200px;
         }        
         .TestCriteria {
             display: flex;
@@ -212,4 +213,67 @@
         gap: 10px;
         margin-right: 5px;
     }
+}
+
+.headerModal {
+    width: 100%;
+    display: flex;
+    border-bottom: 2px solid var(--main-color);
+    h2 {
+        flex: 1;
+    }
+    .closeIconBlock {
+        flex: 1;
+        text-align: right;
+        svg {
+            fill: $danger;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            transition: filter 0.2s ease;
+        }
+    }
+}
+
+.headerModal:hover svg {
+    -webkit-filter: drop-shadow( 2px 2px 4px rgba(0, 0, 0, .7));
+    filter: drop-shadow( 2px 2px 4px rgba(0, 0, 0, .7));
+}
+
+.headerModal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+}
+
+.bodyModal {
+    width: 100%;
+    height: 160px;
+    padding: 0px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    p {
+        padding: 5px;
+    }
+    ul {
+        li {
+            padding: 5px;
+        }
+    }
+}
+
+.footerModal {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    height: 50px;
+}
+
+.noImageIcon {
+    width: 100px;
 }

@@ -1,3 +1,5 @@
+@import "../../UI/styles/vars.scss";
+
 .wrapper {
     display: flex;
     justify-content: center;
@@ -50,20 +52,18 @@
             width: 100%;
             height: 100%;
             gap: 10px;
+            .Name {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
             .content {
                 width: 100%;
                 height: 100%;
                 overflow-y: auto;
                 .scrollMargin {
                     margin-right: 5px;
-                }
-                .title {
-                    width: 100%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 10px;
-                    border-bottom: 2px solid var(--main-color);
                 }
                 .ImageBody {
                     width: 100%;
@@ -90,11 +90,12 @@
                     font-size: 14px;
                 }
                 .TestBody {
+                    margin-right: 5px;
                     display: flex;
                     flex-direction: column;
                     gap: 10px;
                     .questionText {
-                        padding: 5px;
+                        padding: 10px 0px;
                     }
                     .correctAnswer {
                         padding: 5px;
@@ -121,10 +122,113 @@
     }
 ///////////
     .BlockRight {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
         width: 100%;
         height: 100vh;
         flex: 1;
         padding: 10px;
+        .blockTime {
+            .timer {
+                text-align: center;
+                font-size: 14px;
+                font-weight: 700;
+            }
+        }
     }
 }
 
+.option {
+    padding: 10px;
+    border: 2px solid var(--main-color);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+
+.option:hover,
+.option.active {
+  background-color: var(--main-color);
+  color: white;
+}
+
+.answer {
+    gap: 10px;
+    padding: 10px;
+    display: flex;
+}
+
+.finishBlock {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+        svg {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            transition: filter 0.2s ease;
+            fill: var(--white);
+        }
+}
+.finishBlock:hover svg {
+    -webkit-filter: drop-shadow( 2px 2px 4px rgba(0, 0, 0, .7));
+    filter: drop-shadow( 2px 2px 4px rgba(0, 0, 0, .7));
+}
+
+.headerModal {
+    width: 100%;
+    display: flex;
+    border-bottom: 2px solid var(--main-color);
+    h2 {
+        flex: 1;
+    }
+    .closeIconBlock {
+        flex: 1;
+        text-align: right;
+        svg {
+            fill: $danger;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            transition: filter 0.2s ease;
+        }
+    }
+}
+
+.headerModal:hover svg {
+    -webkit-filter: drop-shadow( 2px 2px 4px rgba(0, 0, 0, .7));
+    filter: drop-shadow( 2px 2px 4px rgba(0, 0, 0, .7));
+}
+
+.headerModal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+}
+
+.bodyModal {
+    width: 100%;
+    height: 160px;
+    // padding: 0px 20px;
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+    justify-content: center;
+    p {
+        padding: 10px 0px;
+        font-size: 14px;
+        font-weight: 700;
+    }
+}
+
+.footerModal {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}

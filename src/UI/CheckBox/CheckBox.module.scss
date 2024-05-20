@@ -1,0 +1,46 @@
+.checkboxWrapper {
+    width: 22px;
+    height: 20px;
+    position: relative;
+    display: inline-block;
+    border: 2px solid var(--main-color);
+    border-radius: 7px;
+}
+
+.checkboxInput {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+}
+
+.checkboxCustom {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.checkboxCustom::after {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 5px;
+    border: solid var(--main-color);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.checkboxWrapper input[type="checkbox"]:checked + .checkboxCustom {
+    background-color: var(--main-color);
+    border-color: var(--main-color);
+}
+
+.checkboxWrapper input[type="checkbox"]:checked + .checkboxCustom::after {
+    opacity: 1;
+}

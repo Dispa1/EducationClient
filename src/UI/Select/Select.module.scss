@@ -10,9 +10,8 @@
     font-weight: 700;
     letter-spacing: 4px;
     width: 100%;
-    height: 3rem;
-    font-size: 1.1rem;
-    padding: 1rem;
+    padding: 10px 45px 10px 15px;
+    font-size: 14px;
     background-color: var(--white);
     border: 2px solid var(--main-color);
     border-radius: 7px;
@@ -48,7 +47,6 @@
   }
   
   .value-list {
-    list-style: none;
     // margin-top: 2px;
     box-shadow: 0px 5px 8px 0px rgba(0,0,0,0.2);
     overflow: hidden;
@@ -57,7 +55,7 @@
     border-radius: 0px 0px 5px 5px;
     border: 2px solid var(--main-color);
     opacity: 0;
-    margin-bottom: 5px;
+    // margin-bottom: 5px;
   
     &.open {
       max-height: 320px;
@@ -73,7 +71,7 @@
       // height: 4rem;
       background-color: #FAFCFD;
       padding: 1rem;
-      font-size: 1.1rem;
+      font-size: 14px;
       display: flex;
       align-items: center;
       cursor: pointer;

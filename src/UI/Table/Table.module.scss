@@ -1,0 +1,67 @@
+@import "../styles/vars.scss";
+.table {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    thead {
+        display: flex;
+        border: 2px solid var(--main-color);
+        background-color: var(--main-color);
+        border-radius: 7px 7px 0px 0px;
+        color: var(--white);
+        tr {
+            display: flex;
+            width: 100%;
+            th {
+                display: flex;
+                flex: 4;
+                padding: 10px;
+                font-size: 14px;
+                &:last-child {
+                    flex: 1;
+                  }
+            }
+        }
+    }
+    tbody {
+        display: flex;
+        // align-self: auto;
+        flex-direction: column;
+        border: 2px solid var(--main-color);
+        border-radius: 0px 0px 7px 7px;
+        height: max-content;
+        overflow-y: auto;
+        // padding: 5px;
+        // gap: 5px;
+        tr {
+            display: flex;
+            width: 100%;
+            transition: background-color 0.3s ease;
+            // border-radius: 7px;
+            td {
+                display: flex;
+                flex: 4;
+                padding: 10px;
+                border-top: 1px solid var(--main-color);
+                border-bottom: 1px solid var(--main-color);
+                justify-content: space-between;
+                font-size: 14px;
+                &:last-child {
+                    flex: 1;
+                  }
+                svg {
+                    width: 30px;
+                    height: 30px;
+                    fill: $true-table-td-items;
+                    cursor: pointer;
+                }
+            }
+        &:hover {
+            background-color: rgba(61, 90, 241, 1);
+            backdrop-filter: blur(10px);
+            color: var(--white);
+        }
+        }
+    }
+}
+  

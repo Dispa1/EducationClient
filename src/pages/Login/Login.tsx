@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { loginUser } from '../../store/slice/user';
+import { loginUser } from '../../store/slices/user';
 import { Navigate } from 'react-router-dom';
 import styles from './Login.module.scss';
 
@@ -29,6 +29,7 @@ const Login = () => {
 
   return (
     <div className={styles.wrapper}>
+      <div>
       <Box>
         <div className={styles.container}>
           <h1>Авторизация</h1>
@@ -50,6 +51,7 @@ const Login = () => {
           </form>
         </div>
       </Box>
+      </div>
     </div>
   );
 };

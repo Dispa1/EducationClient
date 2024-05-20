@@ -1,3 +1,4 @@
+@import "../../UI//styles/vars.scss";
 .wrapper {
     display: flex;
     justify-content: center;
@@ -129,27 +130,126 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    .blockTime {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        .timer {
-            font-size: 14px;
-            font-weight: 700;
-        }
-    }
+    // .blockTime {
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: center;
+    //     .timer {
+    //         font-size: 14px;
+    //         font-weight: 700;
+    //     }
+    // }
 }
 }
 
-.CustomTextareaClass {
+.UnswersBody {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    background-color: var(--white);
+    border-radius: 10px;
+    .HeaderText {
+        font-size: 14px;
+        font-weight: 700;
+        padding: 5px 0px;
+    }
+    p {
+        font-size: 14px;
+        font-weight: 700;
+    }
+    .Unswers {
+        height: 785px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        transition: background-color 0.3s ease;
+        padding-right: 5px;
+        .Box {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #e4e2f5;
+            .CheckBoxBody {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                .CheckBoxTrue {
+                    display: flex;
+                    justify-content: flex-end;
+                    gap: 10px;
+                    padding: 10px 10px;
+                    border-radius: 10px 0px 0px 10px;
+                    transition: background-color 0.3s ease;
+                    cursor: pointer;
+                }
+                .CheckBoxTrue:hover {
+                    background-color: $success;
+                    color: var(--white);
+                }
+                .CheckBoxFalse {
+                    display: flex;
+                    justify-content: flex-start;
+                    gap: 10px;
+                    padding: 10px 10px;
+                    border-radius: 0px 10px 10px 0px;
+                    transition: background-color 0.3s ease;
+                    cursor: pointer;
+                }
+                .CheckBoxFalse:hover {
+                    background-color: $danger;
+                    color: var(--white);
+                }
+                .CheckBoxTrue.active {
+                    background-color: $success;
+                    color: var(--white);
+                }
+                
+                .CheckBoxFalse.active {
+                    background-color: $danger;
+                    color: var(--white);
+                }
+            }
+            .UnswerTitle {
+                font-size: 14px;
+                font-weight: 700;
+            }
+            .UnswerText {
+                font-size: 14px;
+                font-weight: 500;
+                margin: 10px 0px;
+                background-color: var(--white);
+                padding: 10px;
+                border-radius: 10px;
+            }
+        }
+        li {
+            margin: 0px 10px;
+            list-style: none;
+        }
+    }
+}
+
+.Unswers.correctAnswer {
+    background-color: $success;
+}
+
+.Unswers.wrongAnswer {
+    background-color: $danger;
+}
+
+.RoleTitle {
     width: 100%;
-    height: 200px;
-    overflow-y: auto;
-    padding: 10px;
-    border: 2px solid var(--main-color);
-    border-radius: 5px;
-    resize: none;
-    font-size: 14px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    p {
+        font-size: 42px;
+        font-weight: 700;
+    }
 }
 
 .finishBlock {
@@ -168,35 +268,4 @@
 .finishBlock:hover svg {
     -webkit-filter: drop-shadow( 2px 2px 4px rgba(0, 0, 0, .7));
     filter: drop-shadow( 2px 2px 4px rgba(0, 0, 0, .7));
-}
-
-.headerModal {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 50px;
-}
-
-.bodyModal {
-    width: 100%;
-    height: 160px;
-    // padding: 0px 20px;
-    display: flex;
-    flex-direction: column;
-    // align-items: center;
-    justify-content: center;
-    p {
-        padding: 10px 0px;
-        font-size: 18px;
-        font-weight: 700;
-    }
-}
-
-.footerModal {
-    width: 100%;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
 }
